@@ -1,0 +1,36 @@
+{
+  "name": "MorningSync",
+  "version": "1.0.0",
+  "authors": [
+    "Jeff Treleaven <jtreleaven@redventures.com>"
+  ],
+  "description": "wake up and sync up with the day through the Morning Sync dashboard.",
+  "main": "index.html",
+  "keywords": [
+    "morning",
+    "sync",
+    "dashboard",
+    "chromecast"
+  ],
+  "license": "MIT",
+  "homepage": "http://morningsync.com/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "restangular": "~1.5.1",
+    "material-design-lite": "~1.0.0",
+    "material-design-icons": "~2.0.0",
+    "skycons": "*",
+    "angular-skycons": "~2.0.2",
+    "angular-google-maps": "~2.1.5",
+    "angular-material": "~0.10.0",
+    "jquery": "~2.1.4"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "morningsync",
+  "version": "1.0.0",
+  "description": "Get your mind up to speed when you wake up.",
+  "main": "app.js",
+  "scripts": {
+    "prestart": "grunt build",
+    "start": "node app.js",
+    "monitor": "nodemon app.js",
+    "deploy": "gcloud preview app deploy app.yaml",
+    "init-cloudsql": "node books/model-cloudsql.js"
+  },
+  "keywords": [
+    "morning",
+    "sync",
+    "google",
+    "chromecast",
+    "express"
+  ],
+  "author": "Jeff Treleaven <jtreleaven262@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "angular-ui-router": "^0.2.15",
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "forecast.io": "0.0.9",
+    "forecast.io-bluebird": "0.0.1",
+    "gcloud": "git://github.com/GoogleCloudPlatform/gcloud-node",
+    "googlemaps": "^1.0.1",
+    "grunt": "^0.4.5",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-concat-css": "^0.3.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-html2js": "^0.3.2",
+    "lodash": "^3.10.0",
+    "moment": "^2.10.3",
+    "node-google-timezone": "0.0.2"
+  }
+}
