@@ -71,9 +71,9 @@
     function WeatherController(Weather, Geolocation) {
         var vm = this;
         vm.loaded = false;
-        vm.waiting = true;
         vm.forecast = "";
-        vm.icon = "partly-cloudy-night";
+
+        vm.showWeather = isWeatherLoaded;
 
         Geolocation().then(function(loc) {
             let geo = loc.coords.latitude + "," + loc.coords.longitude;
@@ -84,13 +84,16 @@
                     vm.maxTempTime = result.temperatureMaxTime;
                     vm.icon = result.icon;
                     vm.loaded = true;
-                    vm.waiting = false;
                 }, function(err) {
                     console.error(err);
                 });
         }, function(reason) {
             console.error(reason);
         });
+
+        function isWeatherLoaded() {
+            return vm.loaded;
+        }
     }
 })();
 ;(function() {
@@ -110,11 +113,11 @@
 
 angular.module("../client/weather/weather.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../client/weather/weather.tpl.html",
-    "<div class=\"md-primary\" ng-controller=\"WeatherController as weather\">\n" +
-    "    <h2 class=\"md-toolbar-tools\">\n" +
+    "<div class=\"md-primary weather-frame\" layout-align=\"center center\" ng-controller=\"WeatherController as weather\">\n" +
+    "    <h2 class=\"md-toolbar-tools\" layout-margin>\n" +
     "        Weather\n" +
     "    </h2>\n" +
-    "    <md-card>\n" +
+    "    <md-card ng-show=\"weather.showWeather()\">\n" +
     "        <div layout=\"row\" layout-align=\"center center\">\n" +
     "            <h1 ng-bind=\"weather.maxTemp\" flex=\"66\" layout-margin></h1>\n" +
     "            <div flex=\"33\" layout-align=\"center end\" layout-margin>\n" +
@@ -125,6 +128,7 @@ angular.module("../client/weather/weather.tpl.html", []).run(["$templateCache", 
     "            <p ng-bind=\"weather.forecast\"></p>\n" +
     "        </md-card-content>\n" +
     "    </md-card>\n" +
+    "    <md-progress-circular class=\"md-accent\" ng-hide=\"weather.showWeather()\" md-mode=\"indeterminate\"></md-progress-circular>\n" +
     "</div>\n" +
     "");
 }]);

@@ -10,9 +10,9 @@
     function WeatherController(Weather, Geolocation) {
         var vm = this;
         vm.loaded = false;
-        vm.waiting = true;
         vm.forecast = "";
-        vm.icon = "partly-cloudy-night";
+
+        vm.showWeather = isWeatherLoaded;
 
         Geolocation().then(function(loc) {
             let geo = loc.coords.latitude + "," + loc.coords.longitude;
@@ -23,12 +23,15 @@
                     vm.maxTempTime = result.temperatureMaxTime;
                     vm.icon = result.icon;
                     vm.loaded = true;
-                    vm.waiting = false;
                 }, function(err) {
                     console.error(err);
                 });
         }, function(reason) {
             console.error(reason);
         });
+
+        function isWeatherLoaded() {
+            return vm.loaded;
+        }
     }
 })();

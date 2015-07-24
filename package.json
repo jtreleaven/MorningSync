@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "prestart": "grunt build",
-    "start": "node app.js",
+    "start": "node app.js && grunt watch",
     "monitor": "nodemon app.js",
     "deploy": "gcloud preview app deploy app.yaml",
     "init-cloudsql": "node books/model-cloudsql.js"
@@ -35,6 +35,7 @@
     "grunt-html2js": "^0.3.2",
     "lodash": "^3.10.0",
     "moment": "^2.10.3",
-    "node-google-timezone": "0.0.2"
+    "node-google-timezone": "0.0.2",
+    "grunt-contrib-watch": "~0.6.1"
   }
 }

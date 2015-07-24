@@ -59,15 +59,32 @@ module.exports = function(grunt) {
       temp: {
         src: [ 'tmp' ]
       }
+    },
+    watch: {
+      js: {
+        files: [ 'client/app.js', 'client/**/*.js', 'client/**/*.tpl.html' ],
+        tasks: [ 'html2js', 'concat:main', 'clean' ],
+        options: {
+          livereload: true,
+        }
+      },
+      css: {
+        files: [ 'client/**/*.css' ],
+        tasks: [ 'concat_css:dist' ],
+        options: {
+          livereload: true,
+        }
+      }
     }
   });
 
   // Loading of tasks and registering tasks will be written here
   grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-concat-css');
   grunt.loadNpmTasks('grunt-html2js');
 
-  grunt.registerTask('build', ['bower', 'html2js', 'concat', 'concat_css', 'clean']);
+  grunt.registerTask('build', ['bower', 'html2js', 'concat', 'concat_css', 'clean', 'watch']);
 };
